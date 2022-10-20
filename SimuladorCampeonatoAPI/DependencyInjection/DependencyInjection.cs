@@ -1,7 +1,7 @@
 ﻿using SimuladorCampeonatoAPI.Data.Repositories.CampeonatoRepository;
 using SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos;
 using SimuladorCampeonatoAPI.Data.Repositories.Times;
-using SimuladorCampeonatoAPI.Services.Times;
+using SimuladorCampeonatoAPI.Services;
 
 namespace SimuladorCampeonatoAPI.DependencyInjections
 {
@@ -18,7 +18,7 @@ namespace SimuladorCampeonatoAPI.DependencyInjections
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<ITimeService, TimeService>();
+            services.AddSingleton<IApplicationService, ApplicationService>();
 
             return services;
         }

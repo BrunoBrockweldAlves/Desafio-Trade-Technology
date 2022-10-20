@@ -1,5 +1,4 @@
 ﻿using SimuladorCampeonato.Domain.Entities;
-using System.Reflection.Metadata;
 
 namespace SimuladorCampeonato.Data.Context
 {

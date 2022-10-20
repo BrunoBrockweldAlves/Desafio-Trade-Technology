@@ -1,4 +1,6 @@
-﻿namespace SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos
+﻿using SimuladorCampeonato.Domain.Entities;
+
+namespace SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos
 {
     public class TimeCampeonatoRepository : ITimeCampeonatoRepository
     {
@@ -7,6 +9,12 @@
         public TimeCampeonatoRepository(DataContext context)
         {
             _context = context;
+        }
+
+        public Task<int> InsertAsync(TimeCampeonato timeCampeonato)
+        {
+            _context.AddAsync(timeCampeonato);
+            return _context.SaveChangesAsync();
         }
 
         public bool IsCampeonatoCheio(Guid campeonatoId)

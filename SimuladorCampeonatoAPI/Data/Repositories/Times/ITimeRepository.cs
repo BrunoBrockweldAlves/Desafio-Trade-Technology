@@ -4,7 +4,6 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.Times
 {
     public interface ITimeRepository
     {
-        Task<int> Insert(Time time);
-        Task<bool> ChecarNomeExistente(string nome);
+        Task<int> InsertAsync(Time time);
     }
 }

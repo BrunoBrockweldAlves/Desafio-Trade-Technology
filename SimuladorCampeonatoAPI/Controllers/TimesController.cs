@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SimuladorCampeonatoAPI.Services.Times;
+using SimuladorCampeonatoAPI.Services;
 
 namespace SimuladorCampeonato.Controllers
 {
@@ -7,9 +7,9 @@ namespace SimuladorCampeonato.Controllers
     [ApiController]
     public class TimesController : ControllerBase
     {
-        private readonly ITimeService _timeService;
+        private readonly IApplicationService _timeService;
 
-        public TimesController(ITimeService timeService)
+        public TimesController(IApplicationService timeService)
         {
             _timeService = timeService;
         }

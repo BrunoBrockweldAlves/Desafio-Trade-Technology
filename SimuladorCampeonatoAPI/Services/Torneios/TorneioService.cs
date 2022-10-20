@@ -1,4 +1,4 @@
-﻿namespace SimuladorCampeonatoAPI.Services.Torneio
+﻿namespace SimuladorCampeonatoAPI.Services.Torneios
 {
     public class TorneioService : ITorneioService
     {

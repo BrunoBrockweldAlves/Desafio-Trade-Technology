@@ -30,9 +30,13 @@ namespace SimuladorCampeonatoAPI.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nome")
+                        .IsUnique();
 
                     b.ToTable("Campeonatos");
                 });
@@ -45,9 +49,13 @@ namespace SimuladorCampeonatoAPI.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Nome")
+                        .IsUnique();
 
                     b.ToTable("Times");
                 });
@@ -58,13 +66,16 @@ namespace SimuladorCampeonatoAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Campeonato")
+                    b.Property<Guid>("CampeonatoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("TimeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TimeId", "CampeonatoId")
+                        .IsUnique();
 
                     b.ToTable("TimeCampeonatos");
                 });

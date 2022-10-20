@@ -1,4 +1,5 @@
-﻿using MeuCampeonatoAPI.Application.Utils;
+﻿using MeuCampeonatoAPI.Application.Models;
+using MeuCampeonatoAPI.Application.Utils;
 using MeuCampeonatoAPI.Domain.Entities;
 using MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository;
 using MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos;
@@ -40,10 +41,33 @@ namespace MeuCampeonatoAPI.Application.Services
                 $"Houve um erro ao criar o campeonato {campeonato.Nome}.";
         }
 
-        public void RealizarCampeonato(Guid campeonatoId)
+        public async Task<ResultadoCampeonatoViewModel> GetResultadoCampeonatoByCampeonatoId(Guid campeonatoId)
         {
-            throw new NotImplementedException();
+            var campeonato = await _campeonatoRepository.GetById(campeonatoId);
+
+            if (campeonato == null)
+            {
+                throw new Exception("Campeonato não encontrado!");
+            }
+
+            var timeCampeonatos = await _timeCampeonatoRepository.GetByCampeonatoIdAsync(campeonatoId);
+
+            var resultadoCampeonato = new ResultadoCampeonatoViewModel
+            {
+                Nome = campeonato.Nome,
+                ResultadoCampeonatoList = timeCampeonatos.OrderBy(x => x.PontuacaoTotal)
+                                                         .ThenBy(x => x.DataInscricao)
+                                                         .Select((x, index) => new TimeCampeonatoResultadoViewModel
+                                                         {
+                                                             Colocacao = (short)index,
+                                                             Nome = x.Time.Nome,
+                                                             Pontuacao = x.PontuacaoTotal
+                                                         }).ToList()
+            };
+
+            return resultadoCampeonato ;
         }
+
         #endregion
 
         #region TimeCampeonato
@@ -81,9 +105,10 @@ namespace MeuCampeonatoAPI.Application.Services
         #endregion
 
         #region ExecutarCampeonato
-        public void ExecutarCampeonatoById(Guid campeonatoId)
+        public async Task RealizarCampeonatoById(Guid campeonatoId)
         {
-            var timeCampeonatos = _timeCampeonatoRepository.GetByCampeonatoIdAsync(campeonatoId);
+            //TODO Implementar
+            var timeCampeonatos = await _timeCampeonatoRepository.GetByCampeonatoIdAsync(campeonatoId);
 
         }
 

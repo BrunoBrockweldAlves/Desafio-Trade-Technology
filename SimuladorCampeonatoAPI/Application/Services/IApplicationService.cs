@@ -9,7 +9,7 @@ namespace MeuCampeonatoAPI.Application.Services
         #endregion
 
         #region Campeonato
-        public void RealizarCampeonato(Guid campeonatoId);
+        public void RealizarCampeonatoById(Guid campeonatoId);
         #endregion
 
         #region TimeCampeonato

@@ -22,5 +22,10 @@ namespace MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository
         {
             return await _context.Campeonatos.ToListAsync();
         }
+
+        public async Task<Campeonato?> GetById(Guid campeonatoId)
+        {
+            return await _context.Campeonatos.FirstOrDefaultAsync(x => x.Id == campeonatoId);
+        }
     }
 }

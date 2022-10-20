@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace MeuCampeonatoAPI.Domain.Entities
 {
@@ -12,11 +13,14 @@ namespace MeuCampeonatoAPI.Domain.Entities
             CampeonatoId = campeonatoId;
             TimeEliminado = false;
             PontuacaoTotal = 0;
+            DataInscricao = DateTime.Now;
         }
 
         public Guid Id { get; private set; }
-        public Guid TimeId { get; private set; }
         public Guid CampeonatoId { get; private set; }
+
+        public Guid TimeId { get; private set; }
+        public virtual Time Time {get ; set;}
 
 
         #region Score
@@ -25,6 +29,9 @@ namespace MeuCampeonatoAPI.Domain.Entities
 
         [DefaultValue(0)]
         public short PontuacaoTotal { get; private set; }
+
+        [Required]
+        public DateTime DataInscricao { get; private set; }
         #endregion
 
         #region Methods

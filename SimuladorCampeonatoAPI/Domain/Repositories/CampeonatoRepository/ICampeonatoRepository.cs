@@ -6,5 +6,7 @@ namespace MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository
     {
         Task<int> InsertAsync(Campeonato campeonato);
         Task<IEnumerable<Campeonato>> GetAll();
+
+        Task<Campeonato?> GetById(Guid campeonatoId);
     }
 }

@@ -16,5 +16,10 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.Times
             _context.AddAsync(time);
             return _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Time>> GetAll()
+        {
+            return await _context.Times.ToListAsync();
+        }
     }
 }

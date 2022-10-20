@@ -5,5 +5,6 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.Times
     public interface ITimeRepository
     {
         Task<int> InsertAsync(Time time);
+        Task<IEnumerable<Time>> GetAll();
     }
 }

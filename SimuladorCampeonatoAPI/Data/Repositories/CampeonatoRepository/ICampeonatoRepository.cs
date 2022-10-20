@@ -5,5 +5,6 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.CampeonatoRepository
     public interface ICampeonatoRepository
     {
         Task<int> InsertAsync(Campeonato campeonato);
+        Task<IEnumerable<Campeonato>> GetAll();
     }
 }

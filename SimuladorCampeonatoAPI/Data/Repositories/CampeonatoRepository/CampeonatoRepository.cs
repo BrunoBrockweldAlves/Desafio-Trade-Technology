@@ -16,5 +16,10 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.CampeonatoRepository
             _context.AddAsync(campeonato);
             return _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Campeonato>> GetAll()
+        {
+            return await _context.Campeonatos.ToListAsync();
+        }
     }
 }

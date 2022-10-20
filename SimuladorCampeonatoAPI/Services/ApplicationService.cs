@@ -53,7 +53,7 @@ namespace SimuladorCampeonatoAPI.Services
                 return "Impossível associar time: Campeonato já está cheio!";
             }
 
-            var timeCampeonato = new TimeCampeonato() { TimeId = timeId, CampeonatoId = campeonatoId };
+            var timeCampeonato = new TimeCampeonato(timeId, campeonatoId);
 
             var associadoComSucesso = await _timeCampeonatoRepository.InsertAsync(timeCampeonato);
 
@@ -66,7 +66,12 @@ namespace SimuladorCampeonatoAPI.Services
         {
             var timeCampeonato = await _timeCampeonatoRepository.GetById(timeCampeonatoId);
 
-            var eliminadoComSucesso = await _timeCampeonatoRepository.InsertAsync(timeCampeonato);
+            if (timeCampeonato == null) 
+                return "Time não encontrado!";
+
+            timeCampeonato.EliminarTime();
+
+            var eliminadoComSucesso = await _timeCampeonatoRepository.UpdateAsync(timeCampeonato);
 
             return eliminadoComSucesso == 1 ?
                "Time associado com sucesso!" :

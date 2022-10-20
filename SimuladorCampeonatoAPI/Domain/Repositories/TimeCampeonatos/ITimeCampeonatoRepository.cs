@@ -6,7 +6,8 @@ namespace MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos
     {
         Task<int> InsertAsync(TimeCampeonato timeCampeonato);
         Task<int> UpdateAsync(TimeCampeonato timeCampeonato);
-        Task<TimeCampeonato?> GetById(Guid timeCampeonatoId);
+        Task<TimeCampeonato?> GetByIdAsync(Guid timeCampeonatoId);
+        Task<IEnumerable<TimeCampeonato>> GetByCampeonatoIdAsync(Guid campeonatoId);
         public bool IsCampeonatoCheio(Guid campeonatoId);
     }
 }

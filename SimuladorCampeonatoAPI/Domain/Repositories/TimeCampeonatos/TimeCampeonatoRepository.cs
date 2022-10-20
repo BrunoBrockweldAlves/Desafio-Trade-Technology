@@ -24,9 +24,14 @@ namespace MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<TimeCampeonato?> GetById(Guid timeCampeonatoId)
+        public async Task<TimeCampeonato?> GetByIdAsync(Guid timeCampeonatoId)
         {
             return await _context.TimeCampeonatos.FirstOrDefaultAsync(x => x.Id == timeCampeonatoId);
+        }
+
+        public async Task<IEnumerable<TimeCampeonato>> GetByCampeonatoIdAsync(Guid campeonatoId)
+        {
+            return await _context.TimeCampeonatos.Where(x => x.CampeonatoId == campeonatoId).ToListAsync();
         }
 
         public bool IsCampeonatoCheio(Guid campeonatoId)

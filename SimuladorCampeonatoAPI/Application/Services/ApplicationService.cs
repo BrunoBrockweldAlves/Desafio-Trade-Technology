@@ -1,4 +1,5 @@
-﻿using MeuCampeonatoAPI.Domain.Entities;
+﻿using MeuCampeonatoAPI.Application.Utils;
+using MeuCampeonatoAPI.Domain.Entities;
 using MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository;
 using MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos;
 using MeuCampeonatoAPI.Domain.Repositories.Times;
@@ -64,7 +65,7 @@ namespace MeuCampeonatoAPI.Application.Services
 
         public async Task<string> EliminarTime(Guid timeCampeonatoId)
         {
-            var timeCampeonato = await _timeCampeonatoRepository.GetById(timeCampeonatoId);
+            var timeCampeonato = await _timeCampeonatoRepository.GetByIdAsync(timeCampeonatoId);
 
             if (timeCampeonato == null)
                 return "Time não encontrado!";
@@ -80,9 +81,24 @@ namespace MeuCampeonatoAPI.Application.Services
         #endregion
 
         #region ExecutarCampeonato
-        public void ExecutarCampeonato()
+        public void ExecutarCampeonatoById(Guid campeonatoId)
         {
+            var timeCampeonatos = _timeCampeonatoRepository.GetByCampeonatoIdAsync(campeonatoId);
 
+        }
+
+        public TimeCampeonato DefinirTimeGanhador(ref TimeCampeonato timeUm, ref TimeCampeonato timeDois)
+        {
+            var pyHelper = new PythonHelper();
+            var resultado = pyHelper.GerarResultadosJogo();
+
+            var golsTimeUm = resultado[0];
+            var golsTimeDois = resultado[1];
+
+            timeUm.AdicionarResultadoJogo(golsTimeUm, golsTimeDois);
+            timeDois.AdicionarResultadoJogo(golsTimeDois, golsTimeUm);
+
+            return golsTimeUm > golsTimeDois ? timeUm : timeDois;
         }
         #endregion
     }

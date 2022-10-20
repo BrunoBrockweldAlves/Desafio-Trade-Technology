@@ -30,6 +30,9 @@ namespace MeuCampeonatoAPI.Domain.Entities
         [DefaultValue(0)]
         public short PontuacaoTotal { get; private set; }
 
+        [DefaultValue(0)]
+        public short PenaltisTotais { get; private set; }
+
         [Required]
         public DateTime DataInscricao { get; private set; }
         #endregion
@@ -37,9 +40,14 @@ namespace MeuCampeonatoAPI.Domain.Entities
         #region Methods
         public void EliminarTime() => TimeEliminado = true;
 
-        public void AdicionarResultadoJogo(short golsMarcados, short golsSofridos)
+        public void AdicionarSaldoGolsJogo(short golsMarcados, short golsSofridos)
         {
             PontuacaoTotal += (short)(golsMarcados - golsSofridos);
+        }
+
+        public void AdicionarSaldoPenaltisJogo(short golsMarcados, short golsSofridos)
+        {
+            PenaltisTotais += (short)(golsMarcados - golsSofridos);
         }
         #endregion
     }

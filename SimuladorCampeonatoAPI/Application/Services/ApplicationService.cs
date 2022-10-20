@@ -65,7 +65,7 @@ namespace MeuCampeonatoAPI.Application.Services
                                                          }).ToList()
             };
 
-            return resultadoCampeonato ;
+            return resultadoCampeonato;
         }
 
         #endregion
@@ -120,11 +120,43 @@ namespace MeuCampeonatoAPI.Application.Services
             var golsTimeUm = resultado[0];
             var golsTimeDois = resultado[1];
 
-            timeUm.AdicionarResultadoJogo(golsTimeUm, golsTimeDois);
-            timeDois.AdicionarResultadoJogo(golsTimeDois, golsTimeUm);
+            timeUm.AdicionarSaldoGolsJogo(golsTimeUm, golsTimeDois);
+            timeDois.AdicionarSaldoGolsJogo(golsTimeDois, golsTimeUm);
 
-            return golsTimeUm > golsTimeDois ? timeUm : timeDois;
+            if (golsTimeUm > golsTimeDois)
+                return timeUm;
+
+            else if (golsTimeDois > golsTimeUm)
+                return timeDois;
+
+            return Desempatar(timeUm, timeDois);
         }
-        #endregion
+
+        #region Desempate
+        public TimeCampeonato Desempatar(TimeCampeonato timeUm, TimeCampeonato timeDois) => DesempatarPorPenaltis(timeUm, timeDois);
+
+        public TimeCampeonato DesempatarPorPenaltis(TimeCampeonato timeUm, TimeCampeonato timeDois)
+        {
+            var timeUmSeInscreveuAntes = timeUm.DataInscricao.CompareTo(timeDois.DataInscricao);
+
+            if (timeUmSeInscreveuAntes > 0)
+                return timeUm;
+
+            else if (timeUmSeInscreveuAntes < 0)
+                return timeDois;
+
+            return DesempatarPorDataInscricao(timeUm, timeDois);
+        }
+
+        public TimeCampeonato DesempatarPorDataInscricao(TimeCampeonato timeUm, TimeCampeonato timeDois)
+        {
+            var timeUmSeInscreveuAntes = timeUm.DataInscricao.CompareTo(timeDois.DataInscricao);
+
+            return timeUmSeInscreveuAntes > 0 ?
+                timeUm :
+                timeDois;
+        }
+        #endregion Desempate
+        #endregion TimeCampeonato
     }
 }

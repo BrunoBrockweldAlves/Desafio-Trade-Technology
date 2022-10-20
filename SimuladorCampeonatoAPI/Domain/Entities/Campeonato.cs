@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SimuladorCampeonato.Domain.Entities
+namespace MeuCampeonatoAPI.Domain.Entities
 {
     [Index(nameof(Nome), IsUnique = true)]
     public class Campeonato

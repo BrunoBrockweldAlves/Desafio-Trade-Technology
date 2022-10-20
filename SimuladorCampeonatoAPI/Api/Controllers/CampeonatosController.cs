@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MeuCampeonatoAPI.Domain.Data.Context;
+using Microsoft.AspNetCore.Mvc;
 
-namespace SimuladorCampeonato.Controllers
+namespace MeuCampeonatoAPI.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,6 +14,6 @@ namespace SimuladorCampeonato.Controllers
             _context = context;
         }
 
-       
+
     }
 }

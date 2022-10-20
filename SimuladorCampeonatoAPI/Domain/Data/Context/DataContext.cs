@@ -1,6 +1,6 @@
-﻿using SimuladorCampeonato.Domain.Entities;
+﻿using MeuCampeonatoAPI.Domain.Entities;
 
-namespace SimuladorCampeonato.Data.Context
+namespace MeuCampeonatoAPI.Domain.Data.Context
 {
     public class DataContext : DbContext
     {

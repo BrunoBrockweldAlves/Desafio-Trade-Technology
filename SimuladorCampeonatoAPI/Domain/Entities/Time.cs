@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace SimuladorCampeonato.Domain.Entities
+namespace MeuCampeonatoAPI.Domain.Entities
 {
-    [Index(nameof(Nome), IsUnique=true)]
+    [Index(nameof(Nome), IsUnique = true)]
     public class Time
     {
         public Time(string nome, DateTime dataInscricao)

@@ -1,6 +1,6 @@
 global using Microsoft.EntityFrameworkCore;
-global using SimuladorCampeonato.Data.Context;
-using SimuladorCampeonatoAPI.DependencyInjections;
+using MeuCampeonatoAPI.DependencyInjection;
+using MeuCampeonatoAPI.Domain.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

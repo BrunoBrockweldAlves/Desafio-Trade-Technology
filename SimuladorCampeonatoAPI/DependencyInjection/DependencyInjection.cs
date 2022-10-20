@@ -1,9 +1,9 @@
-﻿using SimuladorCampeonatoAPI.Data.Repositories.CampeonatoRepository;
-using SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos;
-using SimuladorCampeonatoAPI.Data.Repositories.Times;
-using SimuladorCampeonatoAPI.Services;
+﻿using MeuCampeonatoAPI.Application.Services;
+using MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository;
+using MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos;
+using MeuCampeonatoAPI.Domain.Repositories.Times;
 
-namespace SimuladorCampeonatoAPI.DependencyInjections
+namespace MeuCampeonatoAPI.DependencyInjection
 {
     public static class DependencyInjection
     {

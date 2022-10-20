@@ -1,6 +1,6 @@
-﻿using SimuladorCampeonato.Domain.Entities;
+﻿using MeuCampeonatoAPI.Domain.Entities;
 
-namespace SimuladorCampeonatoAPI.Services
+namespace MeuCampeonatoAPI.Application.Services
 {
     public interface IApplicationService
     {

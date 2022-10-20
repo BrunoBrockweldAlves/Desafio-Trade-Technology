@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SimuladorCampeonato.Domain.Entities
+namespace MeuCampeonatoAPI.Domain.Entities
 {
     [Index(nameof(TimeId), nameof(CampeonatoId), IsUnique = true)]
     public class TimeCampeonato

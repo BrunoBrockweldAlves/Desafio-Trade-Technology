@@ -1,9 +1,9 @@
-﻿using SimuladorCampeonato.Domain.Entities;
-using SimuladorCampeonatoAPI.Data.Repositories.CampeonatoRepository;
-using SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos;
-using SimuladorCampeonatoAPI.Data.Repositories.Times;
+﻿using MeuCampeonatoAPI.Domain.Entities;
+using MeuCampeonatoAPI.Domain.Repositories.CampeonatoRepository;
+using MeuCampeonatoAPI.Domain.Repositories.TimeCampeonatos;
+using MeuCampeonatoAPI.Domain.Repositories.Times;
 
-namespace SimuladorCampeonatoAPI.Services
+namespace MeuCampeonatoAPI.Application.Services
 {
     public class ApplicationService : IApplicationService
     {
@@ -66,7 +66,7 @@ namespace SimuladorCampeonatoAPI.Services
         {
             var timeCampeonato = await _timeCampeonatoRepository.GetById(timeCampeonatoId);
 
-            if (timeCampeonato == null) 
+            if (timeCampeonato == null)
                 return "Time não encontrado!";
 
             timeCampeonato.EliminarTime();
@@ -76,6 +76,13 @@ namespace SimuladorCampeonatoAPI.Services
             return eliminadoComSucesso == 1 ?
                "Time associado com sucesso!" :
                "Houve um erro ao associar o time ao campeonato.";
+        }
+        #endregion
+
+        #region ExecutarCampeonato
+        public void ExecutarCampeonato()
+        {
+
         }
         #endregion
     }

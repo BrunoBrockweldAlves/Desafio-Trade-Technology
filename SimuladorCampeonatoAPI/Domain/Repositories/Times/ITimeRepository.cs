@@ -1,6 +1,6 @@
-﻿using SimuladorCampeonato.Domain.Entities;
+﻿using MeuCampeonatoAPI.Domain.Entities;
 
-namespace SimuladorCampeonatoAPI.Data.Repositories.Times
+namespace MeuCampeonatoAPI.Domain.Repositories.Times
 {
     public interface ITimeRepository
     {

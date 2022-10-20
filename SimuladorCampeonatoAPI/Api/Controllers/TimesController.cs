@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SimuladorCampeonatoAPI.Services;
+﻿using MeuCampeonatoAPI.Application.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace SimuladorCampeonato.Controllers
+namespace MeuCampeonatoAPI.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

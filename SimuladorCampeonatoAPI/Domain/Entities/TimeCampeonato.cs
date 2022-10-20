@@ -30,7 +30,7 @@ namespace MeuCampeonatoAPI.Domain.Entities
         #region Methods
         public void EliminarTime() => TimeEliminado = true;
 
-        public void DefinirPontuacaoTotal(short golsSofridos, short golsMarcados)
+        public void AdicionarResultadoJogo(short golsMarcados, short golsSofridos)
         {
             PontuacaoTotal += (short)(golsMarcados - golsSofridos);
         }

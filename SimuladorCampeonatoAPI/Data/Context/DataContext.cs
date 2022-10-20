@@ -8,6 +8,6 @@ namespace SimuladorCampeonato.Data.Context
 
         public DbSet<Time> Times { get; set; }
         public DbSet<Campeonato> Campeonatos { get; set; }
-        public DbSet<TimeCampeonato> TimeCampeonatoS { get; set; }
+        public DbSet<TimeCampeonato> TimeCampeonatos { get; set; }
     }
 }

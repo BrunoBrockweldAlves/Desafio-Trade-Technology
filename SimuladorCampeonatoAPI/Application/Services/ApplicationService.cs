@@ -112,7 +112,7 @@ namespace MeuCampeonatoAPI.Application.Services
 
         }
 
-        public TimeCampeonato DefinirTimeGanhador(ref TimeCampeonato timeUm, ref TimeCampeonato timeDois)
+        private TimeCampeonato DefinirTimeGanhador(ref TimeCampeonato timeUm, ref TimeCampeonato timeDois)
         {
             var pyHelper = new PythonHelper();
             var resultado = pyHelper.GerarResultadosJogo();
@@ -133,9 +133,9 @@ namespace MeuCampeonatoAPI.Application.Services
         }
 
         #region Desempate
-        public TimeCampeonato Desempatar(TimeCampeonato timeUm, TimeCampeonato timeDois) => DesempatarPorPenaltis(timeUm, timeDois);
+        private TimeCampeonato Desempatar(TimeCampeonato timeUm, TimeCampeonato timeDois) => DesempatarPorPenaltis(timeUm, timeDois);
 
-        public TimeCampeonato DesempatarPorPenaltis(TimeCampeonato timeUm, TimeCampeonato timeDois)
+        private TimeCampeonato DesempatarPorPenaltis(TimeCampeonato timeUm, TimeCampeonato timeDois)
         {
             var timeUmSeInscreveuAntes = timeUm.DataInscricao.CompareTo(timeDois.DataInscricao);
 
@@ -148,7 +148,7 @@ namespace MeuCampeonatoAPI.Application.Services
             return DesempatarPorDataInscricao(timeUm, timeDois);
         }
 
-        public TimeCampeonato DesempatarPorDataInscricao(TimeCampeonato timeUm, TimeCampeonato timeDois)
+        private TimeCampeonato DesempatarPorDataInscricao(TimeCampeonato timeUm, TimeCampeonato timeDois)
         {
             var timeUmSeInscreveuAntes = timeUm.DataInscricao.CompareTo(timeDois.DataInscricao);
 

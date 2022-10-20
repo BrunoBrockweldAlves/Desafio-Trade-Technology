@@ -24,12 +24,21 @@ namespace SimuladorCampeonatoAPI.Services
             var criadoComSucesso = await _timeRepository.InsertAsync(time);
 
             return criadoComSucesso == 1 ?
-                "Time criado com sucesso!" :
-                "Houve um erro ao criar o time.";
+                $"Time {time.Nome} criado com sucesso!" :
+                $"Houve um erro ao criar o time {time.Nome}.";
         }
         #endregion
 
         #region Campeonato
+        public async Task<string> CriarCampeonato(Campeonato campeonato)
+        {
+            var criadoComSucesso = await _campeonatoRepository.InsertAsync(campeonato);
+
+            return criadoComSucesso == 1 ?
+                $"Campeonato {campeonato.Nome} criado com sucesso!" :
+                $"Houve um erro ao criar o campeonato {campeonato.Nome}.";
+        }
+
         public void RealizarCampeonato(Guid campeonatoId)
         {
             throw new NotImplementedException();
@@ -37,6 +46,32 @@ namespace SimuladorCampeonatoAPI.Services
         #endregion
 
         #region TimeCampeonato
+        public async Task<string> AssociarTimeCampeonato(Guid timeId, Guid campeonatoId)
+        {
+            if (_timeCampeonatoRepository.IsCampeonatoCheio(campeonatoId))
+            {
+                return "Impossível associar time: Campeonato já está cheio!";
+            }
+
+            var timeCampeonato = new TimeCampeonato() { TimeId = timeId, CampeonatoId = campeonatoId };
+
+            var associadoComSucesso = await _timeCampeonatoRepository.InsertAsync(timeCampeonato);
+
+            return associadoComSucesso == 1 ?
+               "Time associado com sucesso!" :
+               "Houve um erro ao associar o time ao campeonato.";
+        }
+
+        public async Task<string> EliminarTime(Guid timeCampeonatoId)
+        {
+            var timeCampeonato = await _timeCampeonatoRepository.GetById(timeCampeonatoId);
+
+            var eliminadoComSucesso = await _timeCampeonatoRepository.InsertAsync(timeCampeonato);
+
+            return eliminadoComSucesso == 1 ?
+               "Time associado com sucesso!" :
+               "Houve um erro ao associar o time ao campeonato.";
+        }
         #endregion
     }
 }

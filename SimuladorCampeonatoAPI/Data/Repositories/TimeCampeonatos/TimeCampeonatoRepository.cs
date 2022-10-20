@@ -11,10 +11,15 @@ namespace SimuladorCampeonatoAPI.Data.Repositories.TimeCampeonatos
             _context = context;
         }
 
-        public Task<int> InsertAsync(TimeCampeonato timeCampeonato)
+        public async Task<int> InsertAsync(TimeCampeonato timeCampeonato)
         {
-            _context.AddAsync(timeCampeonato);
-            return _context.SaveChangesAsync();
+            await _context.AddAsync(timeCampeonato);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<TimeCampeonato> GetById(Guid timeCampeonatoId)
+        {
+            return await _context.TimeCampeonatos.FirstOrDefaultAsync(x => x.Id == timeCampeonatoId);
         }
 
         public bool IsCampeonatoCheio(Guid campeonatoId)

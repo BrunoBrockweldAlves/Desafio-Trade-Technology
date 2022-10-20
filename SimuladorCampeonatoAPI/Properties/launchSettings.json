@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "SimuladorCampeonatoApi": {
+    "MeuCampeonatoApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

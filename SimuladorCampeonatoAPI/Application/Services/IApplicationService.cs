@@ -17,7 +17,6 @@ namespace MeuCampeonatoAPI.Application.Services
 
         #region TimeCampeonato
         Task<string> AssociarTimeCampeonato(Guid timeId, Guid campeonatoId);
-        Task<string> EliminarTime(Guid timeCampeonatoId);
         #endregion
 
     }

@@ -1,7 +1,7 @@
 Aplicativo em desenvolvimento.
 
 Resumo:
-	O aplicativo é inspirado no conceito de MinimalmApi 
+	O aplicativo é inspirado no conceito de MinimalApi 
 	Em relação ao critério de desempate, compreendi que a data de inscrição era um critério mais fraco que penaltis e gols, portanto este ficou por ultimo na escala de importância.
 
 Disponíveis:

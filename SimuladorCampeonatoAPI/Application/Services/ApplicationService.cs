@@ -86,22 +86,6 @@ namespace MeuCampeonatoAPI.Application.Services
                "Time associado com sucesso!" :
                "Houve um erro ao associar o time ao campeonato.";
         }
-
-        public async Task<string> EliminarTime(Guid timeCampeonatoId)
-        {
-            var timeCampeonato = await _timeCampeonatoRepository.GetByIdAsync(timeCampeonatoId);
-
-            if (timeCampeonato == null)
-                return "Time não encontrado!";
-
-            timeCampeonato.EliminarTime();
-
-            var eliminadoComSucesso = await _timeCampeonatoRepository.UpdateAsync(timeCampeonato);
-
-            return eliminadoComSucesso == 1 ?
-               "Time associado com sucesso!" :
-               "Houve um erro ao associar o time ao campeonato.";
-        }
         #endregion
 
         #region ExecutarCampeonato

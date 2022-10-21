@@ -9,16 +9,16 @@ namespace MeuCampeonatoAPI.DependencyInjection
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<ITimeRepository, TimeRepository>();
-            services.AddSingleton<ICampeonatoRepository, CampeonatoRepository>();
-            services.AddSingleton<ITimeCampeonatoRepository, TimeCampeonatoRepository>();
+            services.AddScoped<ITimeRepository, TimeRepository>();
+            services.AddScoped<ICampeonatoRepository, CampeonatoRepository>();
+            services.AddScoped<ITimeCampeonatoRepository, TimeCampeonatoRepository>();
 
             return services;
         }
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<IApplicationService, ApplicationService>();
+            services.AddScoped<IApplicationService, ApplicationService>();
 
             return services;
         }

@@ -12,7 +12,7 @@ namespace MeuCampeonatoAPI.Application.Services
         #region Campeonato
         Task<string> CriarCampeonato(Campeonato campeonato);
         Task<ResultadoCampeonatoViewModel> GetResultadoCampeonatoByCampeonatoId(Guid campeonatoId);
-        Task RealizarCampeonatoById(Guid campeonatoId);
+        Task<TimeCampeonato> RealizarCampeonatoById(Guid campeonatoId);
         #endregion
 
         #region TimeCampeonato

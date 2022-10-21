@@ -105,11 +105,33 @@ namespace MeuCampeonatoAPI.Application.Services
         #endregion
 
         #region ExecutarCampeonato
-        public async Task RealizarCampeonatoById(Guid campeonatoId)
+        public async Task<TimeCampeonato> RealizarCampeonatoById(Guid campeonatoId)
         {
-            //TODO Implementar
             var timeCampeonatos = await _timeCampeonatoRepository.GetByCampeonatoIdAsync(campeonatoId);
+            var timesTotais = timeCampeonatos.Count();
 
+            while (timesTotais > 1)
+            {
+                List<TimeCampeonato> timesVencedores = new();
+
+                for (int i = 0; i < timeCampeonatos.Count(); i++)
+                {
+                    var timeUm = timeCampeonatos[i];
+                    var timeDois = timeCampeonatos[i + 1];
+
+                    var timeGanhador = DefinirTimeGanhador(ref timeUm, ref timeDois);
+                    var timePerdedor = timeGanhador.Id == timeUm.Id ? timeDois : timeUm;
+
+                    await AtualizarDupla(timeGanhador, timePerdedor);
+
+                    timesVencedores.Add(timeGanhador);
+                }
+
+                timeCampeonatos = timesVencedores;
+                timesTotais = timeCampeonatos.Count();
+            }
+
+            return timeCampeonatos[0];
         }
 
         private TimeCampeonato DefinirTimeGanhador(ref TimeCampeonato timeUm, ref TimeCampeonato timeDois)
@@ -157,6 +179,14 @@ namespace MeuCampeonatoAPI.Application.Services
                 timeDois;
         }
         #endregion Desempate
+
+        public async Task AtualizarDupla(TimeCampeonato timeVencedor, TimeCampeonato timePerdedor)
+        {
+            timePerdedor.EliminarTime();
+            await _timeCampeonatoRepository.UpdateAsync(timeVencedor);
+
+            await _timeCampeonatoRepository.UpdateAsync(timePerdedor);
+        }
         #endregion TimeCampeonato
     }
 }

@@ -11,7 +11,7 @@ namespace MeuCampeonatoAPI.Domain.Entities
             Id = Guid.NewGuid();
             TimeId = timeId;
             CampeonatoId = campeonatoId;
-            TimeEliminado = false;
+            FoiEliminado = false;
             PontuacaoTotal = 0;
             DataInscricao = DateTime.Now;
         }
@@ -25,7 +25,7 @@ namespace MeuCampeonatoAPI.Domain.Entities
 
         #region Score
         [DefaultValue(false)]
-        public bool TimeEliminado { get; private set; }
+        public bool FoiEliminado { get; private set; }
 
         [DefaultValue(0)]
         public short PontuacaoTotal { get; private set; }
@@ -38,7 +38,7 @@ namespace MeuCampeonatoAPI.Domain.Entities
         #endregion
 
         #region Methods
-        public void EliminarTime() => TimeEliminado = true;
+        public void EliminarTime() => FoiEliminado = true;
 
         public void AdicionarSaldoGolsJogo(short golsMarcados, short golsSofridos)
         {
